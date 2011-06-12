@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/schemaker/models/join_model.rb",
     "lib/schemaker/models/object_model.rb",
     "lib/schemaker/models/subject_model.rb",
+    "schemaker.gemspec",
     "spec/models_helper.rb",
     "spec/schemaker/model/join_spec.rb",
     "spec/schemaker/model/object_spec.rb",
