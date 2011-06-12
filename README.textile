@@ -1,0 +1,49 @@
+h1. Schemaker
+
+This is the *Schema Maker* also known as the *schemaker*. This gem can help configure your model relationships for 3 models, the subject, the join and the object model.
+Typically when you add some behavior field to a subject (fx a UserAccount model class), this may require a 1-M or M-M relationship to the object of that relationship.
+With _ActiveRecord_ this can require a join model or just a symmetrical _:has_and_belongs_to_many_. If you apply Schemaker, it will handle all this magic for you!
+
+Schemaker is intended for use when creating gems that require somewhat complex model relationships for adding behavior. It does the "heavy lifting" on this part of the work.
+There will likely be adapters for other data stores too, to simplify ensuring that your gem can support and store the relationships correctly for these data stores.
+
+h2. Install
+
+Gemfile:
+
+@gem 'schemaker@
+
+@$ bundle@
+
+h2. Usage
+
+Create a complex Many-to-Many join through the join model
+
+<pre>require 'schemaker'  
+  
+models = Schemaker::Models.new UserAccount, Role, UsersRoles, :subject_key => :troles
+models.configure</pre>
+
+Create a "quick join" (a symmetrical :has_and_belongs_to_many for the subject and object model)
+
+@models.subject_model.quick_join@
+
+Create a :has_one to relationship from the subject to the object
+
+@models.subject_model.create_has_one :object@
+
+h2. Contributing to schemaker
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+h2. Copyright
+
+Copyright (c) 2011 Kristian Mandrup. See LICENSE.txt for
+further details.
+

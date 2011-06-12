@@ -80,6 +80,13 @@ module Schemaker
       make_relationship :has_many, clazz, options
     end        
 
+    # Create a 'has_many' relationship on the model (Class)
+    # Example:
+    #   User.has_one :roles, :class_name => 'Role'
+    def create_has_one clazz, options = {} 
+      make_relationship :has_one, clazz, options.merge(:key => singular_key(clazz))
+    end        
+
     # Create a 'has_many :through' relationship on the model (Class)
     # Example:
     #   User.has_many :roles, :class_name => 'Role', :through => 'UsersRoles'
