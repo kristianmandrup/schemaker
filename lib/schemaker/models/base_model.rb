@@ -70,7 +70,7 @@ module Schemaker
     # Example:
     #   Role.belongs_to :user, :class_name => 'User'
     def create_belongs_to clazz, options = {}
-      make_relationship :belongs_to, clazz, options
+      make_relationship :belongs_to, clazz, options.merge(:key => singular_key(clazz))
     end
 
     # Create a 'has_many' relationship on the model (Class)
@@ -127,6 +127,11 @@ module Schemaker
 
     def get_class type
       models.get_class type          
+    end
+
+    def singular_key cls_name
+      model = get_class(cls_name)
+      model.to_s.singularize.underscore
     end
 
     def make_key cls_name

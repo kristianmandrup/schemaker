@@ -17,13 +17,7 @@
 # - is used to bind object to subject in a Many-to-Many relationship, typically for Relational DBs
 # - it must have a foreign key for both object and subject model, and most often no primary key of its own
 
-module Schemaker
-  autoload :BaseModel,    'schemaker/models/base_model'
-
-  autoload :JoinModel,    'schemaker/models/join_model'
-  autoload :ObjectModel,  'schemaker/models/object_model'
-  autoload :SubjectModel, 'schemaker/models/subject_model'
-  
+module Schemaker  
   class Models
     attr_accessor :subject_model, :object_model, :join_model
 
