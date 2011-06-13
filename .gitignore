@@ -1,3 +1,4 @@
+*.sqlite3
 # rcov generated
 coverage
 
