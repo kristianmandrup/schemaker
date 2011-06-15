@@ -116,8 +116,8 @@ module Schemaker
     # @param [Class, Symbol] the Class that is the object of the relationship, fx Role for a User.has_many relationship
     # @param [Hash] any extra relationship options, fx for a :through relationship, or to indicate :class_name etc.        
     def make_relationship relationship_name, clazz, options = {} 
-      key_name = options.delete(:key) || key(clazz)          
-
+      inspect!(local_variables,binding)
+      key_name = (options.delete(:key) || key(clazz)).to_sym # first must be a sym too          
       opts_str = options.empty? ? '' : options.inspect.insert(0, ', ').gsub(/[{}]/ , '')
       log "#{my_class_name}.#{relationship_name} :#{key_name}#{opts_str}" if log_on?          
 
