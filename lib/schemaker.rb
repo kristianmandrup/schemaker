@@ -1,3 +1,4 @@
+require 'cutter'
 module Schemaker
   class << self
     attr_accessor :log_on
