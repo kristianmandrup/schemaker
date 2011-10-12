@@ -14,3 +14,18 @@ describe models_class do
     end
   end
 end
+
+describe "quick join models" do
+  let(:models) do
+    # subject, object, join
+    models_class.new UserAccount, Role, nil, :subject_key => :troles
+  end
+
+  describe '#quick_join' do
+    it 'should configure all models' do
+      models.quick_join      
+      
+      logs_matches(models.logs, 'UserAccount.has_and_belongs_to_many :role').should
+    end
+  end
+end

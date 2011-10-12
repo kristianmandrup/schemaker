@@ -122,10 +122,7 @@ module Schemaker
         opts_str = options.empty? ? '' : options.inspect.insert(0, ', ').gsub(/[{}]/ , '')
         log "#{my_class_name}.#{relationship_name} :#{key_name}#{opts_str}" if log_on?
 
-        puts "keyname: #{key_name}"
-
         return my_class.send(relationship_name, key_name) if options.empty?
-
         my_class.send(relationship_name, key_name, options)
       end
 

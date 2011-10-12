@@ -45,13 +45,18 @@ module Schemaker
 
     # configure each model in turn
     def configure
+      return quick_join if !join_model
       [subject_model, object_model, join_model].compact.each do |model| 
         model.configure
       end  
     end
 
+    def quick_join
+      subject_model.quick_join
+    end
+
     def logs
-      @logs ||= [subject_model, object_model, join_model].inject([]) do |res, model|
+      @logs ||= [subject_model, object_model, join_model].compact.inject([]) do |res, model|
         res << model.logs
         res
       end.flatten
