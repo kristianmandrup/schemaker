@@ -1,10 +1,10 @@
 require 'models_helper'
 
-class UsersRoles < ActiveRecord::Base  
+class UsersRoles < ActiveRecord::Base
 end
 
 def join_model_class
-  Schemaker::JoinModel
+  Schemaker::Models::JoinModel
 end
 
 describe join_model_class do

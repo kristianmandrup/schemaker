@@ -19,6 +19,8 @@
 
 module Schemaker  
   class Models
+    autoload_modules :BaseModel, :JoinModel, :ObjectModel, :SubjectModel
+
     attr_accessor :subject_model, :object_model, :join_model
 
     # Sets up the models that take part in the model relationship to be configured

@@ -1,4 +1,3 @@
-require 'shoulda' # must be required before rspec
 require 'rspec'
 require 'active_record'
 require 'schemaker'
