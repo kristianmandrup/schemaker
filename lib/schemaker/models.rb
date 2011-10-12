@@ -31,11 +31,10 @@ module Schemaker
     def initialize subject_class, object_class, join_class, options = {}
       raise ArgumentError, "subject class not given" if !subject_class
       raise ArgumentError, "object class not given" if !object_class
-      raise ArgumentError, "join class not given" if !join_class
 
       @subject_model  = SubjectModel.new self, subject_class, options[:subject_key]
       @object_model   = ObjectModel.new self, object_class
-      @join_model     = JoinModel.new self, join_class
+      @join_model     = JoinModel.new(self, join_class) if join_class
     end
 
     # creates a key for a given type
@@ -46,8 +45,8 @@ module Schemaker
 
     # configure each model in turn
     def configure
-      [subject_model, object_model, join_model].each do
-        |model| model.configure
+      [subject_model, object_model, join_model].compact.each do |model| 
+        model.configure
       end  
     end
 

@@ -22,4 +22,15 @@ describe subject_model_class do
       matches_all last_log, 'UserAccount.has_many :troles', ':through=>:user_roles', ':source=>:role', ':class_name=>"Role"', ':foreign_key=>:account_id'
     end
   end
+
+  describe '#quick_join' do
+    it 'should configure subject model using a quick join :has_and_belongs_to_many' do
+      subject_model.quick_join
+
+      # check the logs!
+      first_log = subject_model.logs.first 
+
+      matches_all first_log, 'has_and_belongs_to_many :roles'
+    end
+  end
 end

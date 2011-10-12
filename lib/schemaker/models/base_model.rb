@@ -107,9 +107,9 @@ module Schemaker
       #     has_and_belongs_to_many :user_accounts, :class_name => 'User'
       #   end
       #
-      def has_and_belongs_many to_clazz, options = {}
-        make_relationship :has_and_belongs_to_many, to_clazz, options[:from]
-        to_clazz.make_relationship :has_and_belongs_to_many, my_class, options[:to]
+      def create_has_and_belongs_to_many to_clazz, options = {}
+        make_relationship :has_and_belongs_to_many, to_clazz, options.merge(:key => singular_key(to_clazz))
+        models.object_model.make_relationship :has_and_belongs_to_many, my_class, options.merge(:key => singular_key(my_class))
       end
 
       # Creates a given type of relationship
@@ -121,6 +121,8 @@ module Schemaker
         key_name = (options.delete(:key) || key(clazz)).to_sym # first must be a sym too
         opts_str = options.empty? ? '' : options.inspect.insert(0, ', ').gsub(/[{}]/ , '')
         log "#{my_class_name}.#{relationship_name} :#{key_name}#{opts_str}" if log_on?
+
+        puts "keyname: #{key_name}"
 
         return my_class.send(relationship_name, key_name) if options.empty?
 
