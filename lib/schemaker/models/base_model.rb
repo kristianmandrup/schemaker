@@ -13,8 +13,8 @@ module Schemaker
     # @param [Schema::Models] each model needs to have access to the collection of models it may need to create relations with
     # @param [Class] each model must have a reference to the Class it aims to configure!
     def initialize models, my_class
-      raise ArgumentError, "The first argument must be a Schema::Models instance" if !models.is_a?(Schemaker::Models)
-      raise ArgumentError, "The second argument must be the Class that is to be configured" if !my_class.is_a?(Class)
+      raise ArgumentError, "The first argument must be a Schema::Models instance, was #{models}" if !models.is_a?(Schemaker::Models)
+      raise ArgumentError, "The second argument must be the Class that is to be configured, was #{my_class}" if !my_class.is_a?(Class)
 
       @models   = models     
       @my_class = my_class 
@@ -116,7 +116,7 @@ module Schemaker
     # @param [Class, Symbol] the Class that is the object of the relationship, fx Role for a User.has_many relationship
     # @param [Hash] any extra relationship options, fx for a :through relationship, or to indicate :class_name etc.        
     def make_relationship relationship_name, clazz, options = {} 
-      inspect!(local_variables,binding)
+      # inspect!(binding)
       key_name = (options.delete(:key) || key(clazz)).to_sym # first must be a sym too          
       opts_str = options.empty? ? '' : options.inspect.insert(0, ', ').gsub(/[{}]/ , '')
       log "#{my_class_name}.#{relationship_name} :#{key_name}#{opts_str}" if log_on?          

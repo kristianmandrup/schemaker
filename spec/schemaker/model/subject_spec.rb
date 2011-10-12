@@ -1,4 +1,4 @@
-require 'troles/common/config/schema/models_helper'
+require 'models_helper'
 
 def subject_model_class
   Schemaker::SubjectModel
